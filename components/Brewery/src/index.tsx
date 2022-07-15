@@ -10,6 +10,8 @@ import GoogleMap from './GoogleMap';
 import LinkIcon from '@mui/icons-material/Link';
 import styled from '@emotion/styled';
 import BreadCrumbs from './BreadCrumbs';
+import { BASE_URL } from '../../pages/BreweryTable/src/constants';
+
 const Brewery: React.FC = () => {
   const router = useRouter();
   const { isReady, query } = router;
@@ -17,7 +19,7 @@ const Brewery: React.FC = () => {
   useEffect(() => {
     if (!isReady) return;
     const fetchData = async () => {
-      const response = await axios.get(`/api/breweries/${query.id}`);
+      const response = await axios.get(`${BASE_URL}/${query.id}`);
       console.log(response);
       setData(response.data.data[0]);
     };
