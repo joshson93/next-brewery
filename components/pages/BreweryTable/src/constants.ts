@@ -4,4 +4,4 @@ export const COLUMNS_HEADER = 'Columns';
 
 export const COLUMN_NAMES = ['Name', 'Type', 'Address', 'Website'];
 
-export const BASE_URL = 'http://localhost:3000/api/breweries';
+export const BASE_URL = 'https://rsm-coding-challenge.vercel.app/api/breweries';
