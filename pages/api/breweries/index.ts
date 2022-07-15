@@ -17,7 +17,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         .limit(limit);
       res.status(200).json({ success: true, page: page + 1, totalPages, data: breweryList });
     } catch (err) {
-      res.status(400).json({ success: false, error: 'Something went wrong.' });
+      res.status(400).json({ success: false, error: err });
     }
   }
 };
