@@ -3,14 +3,14 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import PinDropIcon from '@mui/icons-material/PinDrop';
 import { Card, Tooltip, Typography, Divider } from '@mui/material';
-import { BreweryInterface } from '../../../utils/types';
+import { BreweryInterface } from '../../utils/types';
 import LocalDrinkIcon from '@mui/icons-material/LocalDrink';
 import CallIcon from '@mui/icons-material/Call';
-import GoogleMap from './GoogleMap';
+import GoogleMap from './src/GoogleMap';
 import LinkIcon from '@mui/icons-material/Link';
 import styled from '@emotion/styled';
-import BreadCrumbs from './BreadCrumbs';
-import { BASE_URL } from '../../pages/BreweryTable/src/constants';
+import BreadCrumbs from './src/BreadCrumbs';
+import { BASE_URL } from '../BreweryTable/src/constants';
 
 const Brewery: React.FC = () => {
   const router = useRouter();
@@ -20,7 +20,6 @@ const Brewery: React.FC = () => {
     if (!isReady) return;
     const fetchData = async () => {
       const response = await axios.get(`${BASE_URL}/${query.id}`);
-      console.log(response);
       setData(response.data.data[0]);
     };
     fetchData();

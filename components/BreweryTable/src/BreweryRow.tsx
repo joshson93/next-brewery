@@ -1,7 +1,7 @@
 import { TableRow, TableCell } from '@mui/material';
 
 import React from 'react';
-import { BreweryInterface } from '../../../../utils/types';
+import { BreweryInterface } from '../../../utils/types';
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 interface props {

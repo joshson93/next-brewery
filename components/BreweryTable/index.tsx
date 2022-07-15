@@ -12,13 +12,13 @@ import {
   Typography,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { BreweryInterface } from '../../../../utils/types';
-import BreweryRow from './BreweryRow';
+import { BreweryInterface } from '../../utils/types';
+import BreweryRow from './src/BreweryRow';
 import axios from 'axios';
-import { COLUMN_NAMES, PAGE_HEADER } from './constants';
-import { BASE_URL } from './constants';
-import LoadingTable from './LoadingTable';
-import DisplayError from './DisplayError';
+import { COLUMN_NAMES, PAGE_HEADER } from './src/constants';
+import { BASE_URL } from './src/constants';
+import LoadingTable from './src/LoadingTable';
+import DisplayError from './src/DisplayError';
 
 const BreweryTable: React.FC = () => {
   const [data, setData] = useState([]);
@@ -32,7 +32,6 @@ const BreweryTable: React.FC = () => {
       try {
         const url = `${BASE_URL}?page=${page - 1}`;
         const response = await axios.get(url);
-        console.log(response);
         if (response.status === 200) {
           setLoading(false);
           setData(response.data.data);

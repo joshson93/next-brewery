@@ -1,5 +1,5 @@
 import React from 'react';
-import Brewery from '../../components/Brewery/src';
+import Brewery from '../../components/Brewery/';
 const IndividualBrewery = () => {
   return <Brewery />;
 };

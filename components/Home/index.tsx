@@ -1,6 +1,6 @@
 import React from 'react';
-import { INTRODUCTION } from './constants';
-import BreweryTable from '../../BreweryTable/src';
+import { INTRODUCTION } from './src/constants';
+import BreweryTable from '../BreweryTable/';
 import { Typography } from '@mui/material';
 import styled from '@emotion/styled';
 
