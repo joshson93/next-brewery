@@ -13,7 +13,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const brewery = await Brewery.find({ id: id });
       res.status(200).json({ success: true, data: brewery });
     } catch (err) {
-      res.status(400).json({ success: false, error: 'Something went wrong.' });
+      res.status(400).json({ success: false, error: err });
     }
   }
 };
