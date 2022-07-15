@@ -21,12 +21,12 @@ import LoadingTable from './src/LoadingTable';
 import DisplayError from './src/DisplayError';
 
 const BreweryTable: React.FC = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [totalCount, setTotalCount] = useState(0);
-  const [page, setPage] = React.useState(1);
-  const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [totalCount, setTotalCount] = useState<number>(0);
+  const [page, setPage] = useState<number>(1);
+  const [error, setError] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
   useEffect(() => {
     const fetchData = async () => {
       try {
