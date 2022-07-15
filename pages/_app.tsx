@@ -20,13 +20,18 @@ const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
   return (
-    <CacheProvider value={emotionCache}>
-      <ThemeProvider theme={lightTheme}>
-        <CssBaseline />
-        <NextNProgress options={{ showSpinner: false }} />
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </CacheProvider>
+    <>
+      <Head>
+        <title>RSM Coding Challenge</title>
+      </Head>
+      <CacheProvider value={emotionCache}>
+        <ThemeProvider theme={lightTheme}>
+          <CssBaseline />
+          <NextNProgress options={{ showSpinner: false }} />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </CacheProvider>
+    </>
   );
 };
 

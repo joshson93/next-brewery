@@ -1,6 +1,4 @@
-export const PAGE_HEADER = 'List of all breweries in Philadelphia!';
-
-export const COLUMNS_HEADER = 'Columns';
+export const PAGE_HEADER = 'Table of all breweries';
 
 export const COLUMN_NAMES = ['Name', 'Type', 'Address', 'Website'];
 
