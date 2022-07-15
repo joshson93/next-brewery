@@ -20,7 +20,7 @@ const GoogleMap: React.FC<props> = ({ data }) => {
   };
 
   return (
-    <div style={{ height: '50vh', width: '95%' }}>
+    <div style={{ height: '60vh', width: '95%' }}>
       <GoogleMapReact defaultCenter={defaultProps.center} defaultZoom={defaultProps.zoom}>
         <PinIconComponent
           lat={data?.latitude}
