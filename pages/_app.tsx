@@ -27,7 +27,7 @@ const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
       <CacheProvider value={emotionCache}>
         <ThemeProvider theme={lightTheme}>
           <CssBaseline />
-          <NextNProgress options={{ showSpinner: false }} />
+          <NextNProgress color='#1e90ff' options={{ showSpinner: false }} />
           <Component {...pageProps} />
         </ThemeProvider>
       </CacheProvider>
