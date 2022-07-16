@@ -11,16 +11,35 @@ import LinkIcon from '@mui/icons-material/Link';
 import styled from '@emotion/styled';
 import BreadCrumbs from './src/BreadCrumbs';
 import { BASE_URL } from '../BreweryTable/src/constants';
-
+import LoadingState from './src/LoadingState';
+import DisplayError from '../DisplayError';
 const Brewery: React.FC = () => {
   const router = useRouter();
   const { isReady, query } = router;
   const [data, setData] = useState<null | BreweryInterface>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const noErrorsAndLoadingState = !loading && !error;
+  const dataAndNoError = data && !error;
+
   useEffect(() => {
     if (!isReady) return;
     const fetchData = async () => {
-      const response = await axios.get(`${BASE_URL}/${query.id}`);
-      setData(response.data.data[0]);
+      try {
+        const response = await axios.get(`${BASE_URL}/${query.id}`);
+        if (response.status === 200) {
+          setData(response.data.data[0]);
+          setError(false);
+          setLoading(false);
+        }
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(true);
+          setLoading(false);
+          setErrorMessage(err.message);
+        }
+      }
     };
     fetchData();
     //prevents the query from being undefined on initial render
@@ -31,53 +50,63 @@ const Brewery: React.FC = () => {
       <EntireContainer>
         <BreadCrumbs data={data} />
         <Divider style={{ width: '95%' }} />
-        <Typography style={{ marginTop: '25px' }} component='div' variant='h3'>
-          {data?.name}
-        </Typography>
-        <StyledCard>
-          <CardHeader>Brewery Information:</CardHeader>
-          <InformationContainer>
-            <StyledTooltip title='Address'>
-              <PinDropIcon fontSize='small' />
-            </StyledTooltip>
-            <Typography component='span' variant='body2'>{`${
-              data?.street !== null ? data?.street + ',' : ''
-            } ${data?.city + ','} ${data?.state + ','} ${data?.postal_code}`}</Typography>
-          </InformationContainer>
-          <InformationContainer>
-            <StyledTooltip title='Brewery Type'>
-              <LocalDrinkIcon fontSize='small' />
-            </StyledTooltip>
-            <Typography component='span' variant='body2'>
-              {data?.brewery_type}
+        {loading && LoadingState()}
+
+        {noErrorsAndLoadingState && (
+          <>
+            <Typography style={{ marginTop: '25px' }} component='div' variant='h3'>
+              {data?.name}
             </Typography>
-          </InformationContainer>
-          {data?.phone && (
-            <InformationContainer>
-              <StyledTooltip title='Phone Number'>
-                <CallIcon fontSize='small' />
-              </StyledTooltip>
-              <Typography component='span' variant='body2'>
-                {data?.phone}
-              </Typography>
-            </InformationContainer>
-          )}
-          {data?.website_url && (
-            <InformationContainer style={{ marginBottom: '10px' }}>
-              <StyledTooltip title='Website'>
-                <LinkIcon fontSize='small' />
-              </StyledTooltip>
-              <Typography component='span' variant='body2'>
-                <StyledLink href={`${data?.website_url}`} rel='noopener noreferrer' target='blank'>
-                  {data?.website_url}
-                </StyledLink>
-              </Typography>
-            </InformationContainer>
-          )}
-        </StyledCard>
+            <StyledCard>
+              <CardHeader>Brewery Information:</CardHeader>
+              <InformationContainer>
+                <StyledTooltip title='Address'>
+                  <PinDropIcon fontSize='small' />
+                </StyledTooltip>
+                <Typography component='span' variant='body2'>{`${
+                  data?.street !== null ? data?.street + ',' : ''
+                } ${data?.city + ','} ${data?.state + ','} ${data?.postal_code}`}</Typography>
+              </InformationContainer>
+              <InformationContainer>
+                <StyledTooltip title='Brewery Type'>
+                  <LocalDrinkIcon fontSize='small' />
+                </StyledTooltip>
+                <Typography component='span' variant='body2'>
+                  {data?.brewery_type}
+                </Typography>
+              </InformationContainer>
+              {data?.phone && (
+                <InformationContainer>
+                  <StyledTooltip title='Phone Number'>
+                    <CallIcon fontSize='small' />
+                  </StyledTooltip>
+                  <Typography component='span' variant='body2'>
+                    {data?.phone}
+                  </Typography>
+                </InformationContainer>
+              )}
+              {data?.website_url && (
+                <InformationContainer style={{ marginBottom: '10px' }}>
+                  <StyledTooltip title='Website'>
+                    <LinkIcon fontSize='small' />
+                  </StyledTooltip>
+                  <Typography component='span' variant='body2'>
+                    <StyledLink
+                      href={`${data?.website_url}`}
+                      rel='noopener noreferrer'
+                      target='blank'>
+                      {data?.website_url}
+                    </StyledLink>
+                  </Typography>
+                </InformationContainer>
+              )}
+            </StyledCard>
+          </>
+        )}
+        {error && !loading && <DisplayError err={errorMessage} />}
       </EntireContainer>
 
-      {data && (
+      {dataAndNoError && (
         <GoogleMapContainer>
           <Message variant='body2'>
             {!data?.latitude && !data?.longitude

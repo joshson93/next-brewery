@@ -15,7 +15,7 @@ const BreadCrumbs: React.FC<props> = ({ data }) => {
         <StyledTypography variant='body2'>Breweries</StyledTypography>
       </Link>
       <Link color='inherit' href={`/breweries/${data?.id}`}>
-        <StyledTypography variant='body2'>{data?.name}</StyledTypography>
+        <StyledTypography variant='body2'>{!data?.name ? '' : data?.name}</StyledTypography>
       </Link>
     </Breadcrumbs>
   );

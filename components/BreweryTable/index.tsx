@@ -18,7 +18,7 @@ import axios from 'axios';
 import { COLUMN_NAMES, PAGE_HEADER } from './src/constants';
 import { BASE_URL } from './src/constants';
 import LoadingTable from './src/LoadingTable';
-import DisplayError from './src/DisplayError';
+import DisplayError from '../DisplayError';
 
 const BreweryTable: React.FC = () => {
   const [data, setData] = useState<[]>([]);
