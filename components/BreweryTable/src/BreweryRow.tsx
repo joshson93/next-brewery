@@ -43,6 +43,6 @@ const StyledLink = styled.a`
 const StyledRow = styled(TableRow)`
   &:hover {
     cursor: pointer;
-    background-color: #cdcdcd;
+    background-color: #E0E0E0;
   }
 `;
