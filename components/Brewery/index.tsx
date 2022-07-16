@@ -13,6 +13,7 @@ import BreadCrumbs from './src/BreadCrumbs';
 import { BASE_URL } from '../BreweryTable/src/constants';
 import LoadingState from './src/LoadingState';
 import DisplayError from '../DisplayError';
+import { CARD_HEADER, NO_COORDINATES_MESSAGE, PIN_MESSAGE } from './src/constants';
 const Brewery: React.FC = () => {
   const router = useRouter();
   const { isReady, query } = router;
@@ -48,17 +49,16 @@ const Brewery: React.FC = () => {
   return (
     <>
       <EntireContainer>
-        <BreadCrumbs data={data} />
-        <Divider style={{ width: '95%' }} />
         {loading && LoadingState()}
-
         {noErrorsAndLoadingState && (
           <>
+            <BreadCrumbs data={data} />
+            <Divider style={{ width: '95%' }} />
             <Typography style={{ marginTop: '25px' }} component='div' variant='h3'>
               {data?.name}
             </Typography>
             <StyledCard>
-              <CardHeader>Brewery Information:</CardHeader>
+              <CardHeader>{CARD_HEADER}</CardHeader>
               <InformationContainer>
                 <StyledTooltip title='Address'>
                   <PinDropIcon fontSize='small' />
@@ -105,13 +105,10 @@ const Brewery: React.FC = () => {
         )}
         {error && !loading && <DisplayError err={errorMessage} />}
       </EntireContainer>
-
       {dataAndNoError && (
         <GoogleMapContainer>
           <Message variant='body2'>
-            {!data?.latitude && !data?.longitude
-              ? 'Latitude and Longitude is missing. The location will not show. Please Google the location using the address above.'
-              : 'Look for the red pin located in the Google Map below!'}
+            {!data?.latitude && !data?.longitude ? NO_COORDINATES_MESSAGE : PIN_MESSAGE}
           </Message>
           <GoogleMap data={data} />
         </GoogleMapContainer>

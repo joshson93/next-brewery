@@ -1,11 +1,25 @@
 import styled from '@emotion/styled';
-import { Card, Tooltip } from '@mui/material';
+import { Breadcrumbs, Card, Divider, Link, Tooltip, Typography } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
 import React from 'react';
 
 const LoadingState = () => {
   return (
     <>
+      <Breadcrumbs style={{ marginBottom: '5px' }}>
+        <Link color='inherit'>
+          <Typography variant='body2'>Breweries</Typography>
+        </Link>
+        <Link color='inherit'>
+          <Skeleton
+            style={{ borderRadius: '10px' }}
+            variant='rectangular'
+            animation='wave'
+            width={250}
+          />
+        </Link>
+      </Breadcrumbs>
+      <Divider style={{ width: '95%' }} />
       <StyledBreweryNameSkeleton animation='wave' variant='rectangular' />
 
       <StyledCard>
