@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
-import { Breadcrumbs, Card, Divider, Link, Tooltip, Typography } from '@mui/material';
+import Link from 'next/link';
+import { Breadcrumbs, Card, Divider, Typography } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
 import React from 'react';
 
@@ -7,10 +8,10 @@ const LoadingState = () => {
   return (
     <>
       <Breadcrumbs style={{ marginBottom: '5px' }}>
-        <Link color='inherit'>
+        <Link color='inherit' href='#'>
           <Typography variant='body2'>Breweries</Typography>
         </Link>
-        <Link color='inherit'>
+        <Link color='inherit' href='#'>
           <Skeleton
             style={{ borderRadius: '10px' }}
             variant='rectangular'

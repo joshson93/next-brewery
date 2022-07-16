@@ -14,6 +14,7 @@ import { BASE_URL } from '../BreweryTable/src/constants';
 import LoadingState from './src/LoadingState';
 import DisplayError from '../DisplayError';
 import { CARD_HEADER, NO_COORDINATES_MESSAGE, PIN_MESSAGE } from './src/constants';
+
 const Brewery: React.FC = () => {
   const router = useRouter();
   const { isReady, query } = router;
