@@ -1,4 +1,4 @@
-This small application was created for the RSM coding challenge. Below are the directions in order to start the application.
+Small application to explore breweries in Philadelphia and to dive deeper into Next.js, particularly its serverless functions.
 
 ## Getting Started
 
@@ -15,5 +15,3 @@ npm run dev
 - MongoDB
 - Typescript
 - MUI (Material UI)
-
-The project is hosted on Vercel: https://rsm-coding-challenge.vercel.app/

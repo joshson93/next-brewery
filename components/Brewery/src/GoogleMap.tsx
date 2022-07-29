@@ -32,4 +32,4 @@ const GoogleMap: React.FC<props> = ({ data }) => {
   );
 };
 
-export default GoogleMap;
+export default React.memo(GoogleMap);

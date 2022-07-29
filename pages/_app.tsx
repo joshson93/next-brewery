@@ -22,7 +22,7 @@ const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
   return (
     <>
       <Head>
-        <title>RSM Coding Challenge</title>
+        <title>Philadelphia Breweries</title>
       </Head>
       <CacheProvider value={emotionCache}>
         <ThemeProvider theme={lightTheme}>
